@@ -2,7 +2,7 @@
 
 # TMHS Digital
 
-**An editorial, brutalist-minimalism agency landing page contained in a single `index.html` file.**
+**A "Chromatype Brutalism" agency landing page contained in a single `index.html` file.**
 
 No framework, no build step. The markup, styles, and scripts are self-contained, and the page renders directly in any modern browser.
 
@@ -34,15 +34,16 @@ No framework, no build step. The markup, styles, and scripts are self-contained,
 
 ## Overview
 
-The page presents a fictional boutique design and development studio as a complete editorial site: hero, service matrix, narrative proof, process ledger, and a closing invitation. It is a self-contained reference for building a high-end, type-led landing page without a frontend toolchain.
+The page presents a fictional creative-engineering and strategic-projects agency as a complete site: a typographic hero, a capabilities grid, an Objection &amp; Proof matrix, a selected-work ledger, and a closing invitation. It is a self-contained reference for building a high-end, type-led landing page without a frontend toolchain.
 
-The art direction deliberately avoids generic "AI-slop" patterns — no purple/blue gradients, no centered emoji cards, no hero-text-and-two-buttons. Instead it borrows from high-fashion lookbooks and architecture magazines:
+The art direction — **Chromatype Brutalism** — is a hybrid of raw architectural minimalism and high-end editorial typography. It deliberately rejects generic templates, centered text blocks, and curved-gradient modernism:
 
-- **Asymmetric grid.** Variable columns and generous, unexpected margins signal confidence through empty space rather than filling it.
-- **Color discipline.** A strict 60/30/10 split: chalky concrete (`#e7e3da`) ground, charcoal ink (`#1c1b18`) for text and structure, and a single industrial-rust accent (`#b6451f`) reserved for interactable and focal states. Modules are separated by fine 1px borders, not filled backgrounds.
-- **Typography.** Two typefaces only: Cormorant Garamond for large display headers and JetBrains Mono for technical labels, tags, and figures.
-- **Tactile motion.** Hover and reveal transitions use custom `cubic-bezier` easing for a heavy, luxury feel — the "thunk" of an expensive car door.
-- **Responsiveness.** Layouts collapse to a single, left-aligned column on small screens, navigation condenses to a menu, and touch targets are finger-sized. No content is hidden inside carousels.
+- **Asymmetric grid.** A narrow structural rail offsets a massive primary canvas, and each section pairs a slim utility-notes column with a wide body. Generous, unexpected padding gives major statements absolute breathing room.
+- **Razor-thin structure.** Sections are separated by crisp 1px borders (`border-bottom` / `border-right`) rather than background blocks or heavy shadows.
+- **High-contrast type.** Two families only: Syne for aggressively large display headers with tight line-heights, juxtaposed against hyper-precise JetBrains Mono for labels, nav, and utility text.
+- **Raw industrial color.** A strict 60/30/10 split: raw-cement canvas (`#d9d5cc`), intense off-black ink (`#14130f`) for text and structure, and a single international-orange accent (`#f23c00`) reserved exclusively for active link states, focus indicators, and key touchpoints.
+- **Tactile motion.** Hover states use a weighted, mechanical `transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1)` — like shifting a solid physical toggle, never bouncy.
+- **Responsiveness.** The irregular grid collapses to a single, strictly left-aligned column on small screens, navigation condenses to a minimal menu, and touch targets are thumb-sized. No content is hidden inside carousels.
 
 ## Screenshots
 
@@ -54,12 +55,12 @@ The art direction deliberately avoids generic "AI-slop" patterns — no purple/b
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/services.png" alt="Interactive service matrix" /></td>
-    <td width="50%"><img src="docs/screenshots/proof.png" alt="Editorial testimonials and figures" /></td>
+    <td width="50%"><img src="docs/screenshots/services.png" alt="Capabilities grid" /></td>
+    <td width="50%"><img src="docs/screenshots/proof.png" alt="Objection and proof matrix" /></td>
   </tr>
   <tr>
-    <td align="center"><sub>Service matrix</sub></td>
-    <td align="center"><sub>Proof</sub></td>
+    <td align="center"><sub>Capabilities</sub></td>
+    <td align="center"><sub>Objection &amp; proof matrix</sub></td>
   </tr>
 </table>
 
@@ -78,18 +79,18 @@ These images are regenerated with the capture script in [`scripts/screenshots/`]
 
 | Section | Purpose |
 | --- | --- |
-| Hero | States the studio's position with a typographic headline, a vertical sub-text rail, and a single framed image |
-| Marquee ribbon | Establishes the disciplines at a glance |
-| Service matrix | An interactive 6-cell grid built on fine border lines and clean hover fills |
-| Proof | Weaves testimonials as asymmetric editorial quotes, backed by a raw-number figures band |
-| Process | A four-movement ledger of how the studio works |
-| Invitation | Closes with a low-friction enquiry prompt |
+| Hero | States the studio's position with an aggressively large headline, a utility-notes column, and the framed structural-showcase image |
+| Manifest strip | A running marquee of the studio's disciplines |
+| Capabilities | A 6-cell grid built on fine border lines and clean mechanical hover fills |
+| Objection &amp; Proof matrix | Pairs each struck-through objection with a single raw numerical proof — no stars, no logos |
+| Work | A selected-engagement ledger with hover-weighted rows |
+| Contact | Closes with a low-friction enquiry prompt on an inverted ink panel |
 
 ## Implementation
 
 All styling lives in a single `<style>` block and all behavior in a single `<script>`. The only external resource is Google Fonts; the hero image is a local asset (`image_5bce99.png`).
 
-The CSS uses custom properties for theming, CSS grid for the asymmetric layouts, and `clamp()` for typography and spacing that scale fluidly with the viewport. JavaScript is limited to one responsibility: the mobile menu toggle. All content remains visible and legible if JavaScript does not execute, and motion is disabled under `prefers-reduced-motion`.
+The CSS uses custom properties for theming, CSS grid for the asymmetric layouts, and `clamp()` for typography and spacing that scale fluidly with the viewport. JavaScript is limited to one responsibility: the mobile menu toggle. All content remains visible and legible if JavaScript does not execute, and the manifest-strip animation is disabled under `prefers-reduced-motion`.
 
 ## Local development
 
@@ -119,13 +120,13 @@ The design tokens are defined at the top of the `<style>` block:
 
 ```css
 :root {
-  --concrete: #e7e3da;  /* dominant 60% — chalky off-white */
-  --ink:      #1c1b18;  /* 30% — charcoal text & structure */
-  --rust:     #b6451f;  /* 10% — accent, interactable only */
+  --cement: #d9d5cc;  /* dominant 60% — raw cement canvas  */
+  --ink:    #14130f;  /* 30% — intense off-black text       */
+  --accent: #f23c00;  /* 10% — international orange, accent  */
 }
 ```
 
-Updating `--rust` re-themes every accent at once. Replace the Google Fonts link and the `font-family` declarations to change the type. Swap `image_5bce99.png` at the repo root for your own photograph or render — any aspect ratio works, since the frame uses `object-fit: cover`. All copy is plain HTML and can be edited in place.
+Updating `--accent` re-themes every interactive touchpoint at once. Replace the Google Fonts link and the `font-family` declarations to change the type. Swap `image_5bce99.png` at the repo root for your own photograph or render — any aspect ratio works, since the frame uses `object-fit: cover`. All copy is plain HTML and can be edited in place.
 
 ## Project structure
 
@@ -144,7 +145,7 @@ Updating `--rust` re-themes every accent at once. Replace the Google Fonts link 
 
 ## License
 
-Released under the [MIT License](LICENSE). Fonts are licensed under the [SIL Open Font License](https://openfontlicense.org/).
+Released under the [MIT License](LICENSE). Type — Syne and JetBrains Mono — is licensed under the [SIL Open Font License](https://openfontlicense.org/).
 
 <div align="center">
 <br />

@@ -117,11 +117,11 @@ async function shootElement(page, selector, file) {
 
   // Hide the sticky header so it doesn't overlap mid-section captures.
   await page.evaluate(() => {
-    const h = document.querySelector('header.bar');
+    const h = document.querySelector('header.util');
     if (h) h.style.display = 'none';
   });
 
-  await shootElement(page, '#work', 'services.png');
+  await shootElement(page, '#capabilities', 'services.png');
   await shootElement(page, '#proof', 'proof.png');
   await page.close();
 

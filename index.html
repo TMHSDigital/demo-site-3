@@ -3,799 +3,762 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TMHS Digital — Boutique Design &amp; Development</title>
-<meta name="description" content="TMHS Digital is a boutique design and development studio building considered, durable digital objects for brands that refuse the generic." />
+<title>TMHS Digital — Creative Engineering &amp; Strategic Projects</title>
+<meta name="description" content="TMHS Digital is a high-end creative engineering and strategic projects agency. We build structural, durable digital work for brands that refuse the generic." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
 
 <style>
   /* ============================================================
-     TMHS DIGITAL — single-file editorial / brutalist-minimal site
-     Palette : 60 chalky concrete · 30 deep charcoal ink · 10 rust
-     Type    : Cormorant Garamond (serif) + JetBrains Mono (label)
+     TMHS DIGITAL — "CHROMATYPE BRUTALISM"
+     Raw architectural minimalism × high-end editorial type.
+     Palette  : 60 cement canvas · 30 ink charcoal · 10 int. orange
+     Type     : Syne (display) + JetBrains Mono (utility / labels)
+     Motion   : mechanical, weighted — cubic-bezier(0.25, 1, 0.5, 1)
      ============================================================ */
 
   :root {
-    --concrete:   #e7e3da;   /* dominant 60% — chalky off-white */
-    --concrete-2: #ddd8cc;   /* secondary panel tone            */
-    --ink:        #1c1b18;   /* 30% — near-black charcoal        */
-    --ink-soft:   #44423c;
-    --rust:       #b6451f;   /* 10% — industrial cadmium rust    */
-    --line:       #b8b2a4;   /* 1px structural border            */
-    --line-dark:  #34322c;
+    --cement:    #d9d5cc;   /* 60% — raw chalk / unpolished cement */
+    --cement-2:  #d0ccc1;   /* alternate panel tone                */
+    --ink:       #14130f;   /* 30% — intense off-black             */
+    --ink-soft:  #4c4a42;
+    --accent:    #f23c00;   /* 10% — international orange          */
+    --line:      #b1aa9c;   /* razor-thin 1px structural border    */
+    --line-ink:  #2c2a23;
 
-    /* the "expensive car door" easing curves */
-    --thunk:  cubic-bezier(0.16, 1, 0.3, 1);
-    --weight: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
+    --t: all 0.4s var(--ease);
 
-    --gutter: clamp(1.25rem, 4vw, 4rem);
+    --rail: 84px;
+    --pad: clamp(1.25rem, 4vw, 4.5rem);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
 
   body {
-    background: var(--concrete);
+    background: var(--cement);
     color: var(--ink);
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: 18px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 16px;
     line-height: 1.5;
     overflow-x: hidden;
   }
 
-  ::selection { background: var(--rust); color: var(--concrete); }
-
-  .mono {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.66rem;
-    line-height: 1.6;
-  }
+  ::selection { background: var(--accent); color: var(--cement); }
 
   a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
 
-  /* ---------- structural shell ---------------------------------- */
-  .frame {
-    max-width: 1500px;
-    margin: 0 auto;
-    border-left: 1px solid var(--line);
-    border-right: 1px solid var(--line);
+  /* focus indicators use the accent, per spec */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
-  .pad { padding-left: var(--gutter); padding-right: var(--gutter); }
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.64rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .display {
+    font-family: "Syne", system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+  }
 
-  /* ---------- top bar ------------------------------------------- */
-  header.bar {
+  /* ---------- utility bar -------------------------------------- */
+  .util {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 60;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: 1rem;
-    padding: 1.1rem var(--gutter);
-    background: color-mix(in srgb, var(--concrete) 88%, transparent);
-    backdrop-filter: blur(6px);
+    padding: 0.95rem var(--pad);
+    background: color-mix(in srgb, var(--cement) 90%, transparent);
+    backdrop-filter: blur(7px);
     border-bottom: 1px solid var(--line);
   }
-
-  .wordmark {
+  .brand {
     font-family: "JetBrains Mono", monospace;
-    font-weight: 500;
-    letter-spacing: 0.18em;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-  }
-  .wordmark .dot { color: var(--rust); }
-
-  nav.primary ul {
-    list-style: none;
-    display: flex;
-    gap: clamp(1rem, 2.5vw, 2.6rem);
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    font-size: 0.78rem;
+    display: inline-flex;
     align-items: center;
+    gap: 0.6rem;
   }
-  nav.primary a {
+  .brand .mark {
+    width: 11px; height: 11px;
+    background: var(--accent);
+    transition: var(--t);
+  }
+  .brand:hover .mark { transform: rotate(45deg); }
+
+  nav.nav ul { list-style: none; display: flex; gap: clamp(0.9rem, 2.4vw, 2.4rem); align-items: center; }
+  nav.nav a {
     position: relative;
-    padding-bottom: 3px;
+    padding: 0.3rem 0;
+    transition: var(--t);
   }
-  nav.primary a::after {
+  nav.nav a .idx { color: var(--accent); margin-right: 0.4rem; }
+  nav.nav a::after {
     content: "";
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 100%; height: 1px;
-    background: var(--rust);
+    position: absolute; left: 0; bottom: -2px;
+    height: 1px; width: 100%;
+    background: var(--accent);
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.6s var(--thunk);
+    transition: var(--t);
   }
-  nav.primary a:hover { color: var(--rust); }
-  nav.primary a:hover::after { transform: scaleX(1); transform-origin: left; }
+  nav.nav a:hover { color: var(--accent); }
+  nav.nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 
-  .menu-toggle {
+  .burger {
     display: none;
     background: none;
-    border: 1px solid var(--line-dark);
+    border: 1px solid var(--line-ink);
     color: var(--ink);
     font-family: "JetBrains Mono", monospace;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.62rem;
-    padding: 0.55rem 0.9rem;
+    letter-spacing: 0.14em;
+    font-size: 0.6rem;
+    padding: 0.6rem 0.95rem;
     cursor: pointer;
+    transition: var(--t);
   }
+  .burger:hover { background: var(--ink); color: var(--cement); }
 
-  /* ---------- HERO ---------------------------------------------- */
-  .hero {
+  /* ---------- structural shell: narrow rail + main canvas ------ */
+  .shell {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: var(--rail) 1fr;
   }
-
-  .hero__type {
-    padding: clamp(2.5rem, 7vw, 6.5rem) var(--gutter) clamp(2rem, 4vw, 3.5rem);
+  .rail {
     border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .rail__sticky {
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 0;
   }
+  .rail__v {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: var(--ink-soft);
+    letter-spacing: 0.4em;
+  }
+  .rail__co { color: var(--accent); }
 
-  .eyebrow {
+  .canvas { min-width: 0; }
+
+  /* ---------- generic section block: aside notes + body -------- */
+  .block { border-bottom: 1px solid var(--line); }
+  .block__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) 1fr;
+  }
+  .aside {
+    border-right: 1px solid var(--line);
+    padding: clamp(1.6rem, 3vw, 2.8rem) clamp(1.1rem, 2vw, 1.8rem);
+    color: var(--ink-soft);
+  }
+  .aside .tag { color: var(--accent); }
+  .aside p { margin-top: 1rem; }
+  .body { padding: clamp(1.8rem, 4vw, 4rem) var(--pad); min-width: 0; }
+
+  /* ---------- HERO --------------------------------------------- */
+  .hero .body { padding-top: clamp(2.2rem, 6vw, 5rem); }
+  .hero__top {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    flex-wrap: wrap;
     color: var(--ink-soft);
-    margin-bottom: clamp(2rem, 6vw, 4rem);
+    margin-bottom: clamp(2.4rem, 6vw, 4.5rem);
   }
 
+  .hero__lead {
+    display: grid;
+    grid-template-columns: 1fr clamp(190px, 28%, 360px);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    align-items: start;
+  }
   .hero h1 {
-    font-weight: 500;
-    font-size: clamp(3.2rem, 11vw, 9.5rem);
-    line-height: 0.92;
-    letter-spacing: -0.015em;
+    font-size: clamp(3.1rem, 12.5vw, 11rem);
+    margin: 0;
   }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--rust);
-    font-weight: 400;
+  .hero h1 .row { display: block; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1 .thin { font-weight: 500; font-style: italic; }
+  .hero h1 .shift { display: inline-block; transform: translateX(clamp(0px, 6vw, 5rem)); }
+
+  /* the framed structural showcase image */
+  figure.showcase { position: relative; margin: 0; align-self: stretch; }
+  figure.showcase .frameimg {
+    position: relative;
+    border: 1px solid var(--line-ink);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
   }
-  .hero h1 .indent { display: block; padding-left: clamp(0rem, 12vw, 9rem); }
+  figure.showcase img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.8s var(--ease), transform 0.9s var(--ease);
+  }
+  figure.showcase:hover img { filter: grayscale(0) contrast(1); transform: scale(1.04); }
+  figure.showcase figcaption {
+    position: absolute; left: 0; bottom: 0;
+    background: var(--ink); color: var(--cement);
+    display: flex; gap: 0.6rem;
+    padding: 0.45rem 0.7rem;
+  }
+  figure.showcase figcaption b { color: var(--accent); font-weight: 400; }
 
   .hero__foot {
     margin-top: clamp(2.4rem, 6vw, 4.2rem);
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(1.4rem, 4vw, 3rem);
     align-items: end;
   }
-  .hero__foot p {
-    max-width: 34ch;
-    font-size: 1.18rem;
-    line-height: 1.45;
-    color: var(--ink-soft);
-  }
-
-  /* vertical sub-text rail */
-  .hero__media {
-    position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr;
-  }
-  .vrail {
-    border-right: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 0;
-  }
-  .vrail span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    color: var(--ink-soft);
-    letter-spacing: 0.42em;
-  }
-  .hero__figure {
-    position: relative;
-    padding: clamp(1.5rem, 3vw, 2.4rem);
-  }
-  .hero__figure figure {
-    position: relative;
-    height: 100%;
-    min-height: 320px;
-    border: 1px solid var(--line-dark);
-    overflow: hidden;
-  }
-  .hero__figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: grayscale(1) contrast(1.04);
-    transition: filter 0.9s var(--thunk), transform 1.1s var(--thunk);
-  }
-  .hero__figure figure:hover img {
-    filter: grayscale(0) contrast(1);
-    transform: scale(1.03);
-  }
-  .hero__figure figcaption {
-    position: absolute;
-    left: 0; bottom: 0;
-    background: var(--ink);
-    color: var(--concrete);
-    padding: 0.5rem 0.8rem;
-    display: flex;
-    gap: 0.6rem;
-  }
-  .hero__figure figcaption .num { color: var(--rust); }
-
-  /* placeholder shown until real asset loads */
-  .ph {
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(45deg, var(--concrete-2) 0 14px, var(--concrete) 14px 28px);
-    display: flex; align-items: flex-end; padding: 1rem;
-    color: var(--ink-soft);
-    z-index: -1;
-  }
-
-  /* ---------- marquee ribbon ------------------------------------ */
-  .ribbon {
-    border-bottom: 1px solid var(--line);
-    overflow: hidden;
-    background: var(--ink);
-    color: var(--concrete);
-  }
-  .ribbon__track {
-    display: flex;
-    gap: 3rem;
-    white-space: nowrap;
-    padding: 0.7rem 0;
-    width: max-content;
-    animation: drift 38s linear infinite;
-  }
-  .ribbon__track span { display: inline-flex; gap: 3rem; }
-  .ribbon b { color: var(--rust); font-weight: 400; }
-  @keyframes drift { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) {
-    .ribbon__track { animation: none; }
-  }
-
-  /* ---------- section scaffolding ------------------------------- */
-  section { border-bottom: 1px solid var(--line); }
-
-  .sec-head {
-    display: grid;
-    grid-template-columns: minmax(0, 18rem) 1fr;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    padding: clamp(2.4rem, 6vw, 4.5rem) var(--gutter) clamp(1.6rem, 3vw, 2.6rem);
-  }
-  .sec-head .idx { color: var(--rust); }
-  .sec-head h2 {
-    font-weight: 500;
-    font-size: clamp(2rem, 5.5vw, 4rem);
-    line-height: 1.02;
-    letter-spacing: -0.01em;
-    max-width: 18ch;
-  }
-  .sec-head h2 em { font-style: italic; color: var(--ink-soft); }
-
-  /* ---------- SERVICE MATRIX ------------------------------------ */
-  .matrix {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--line);
-  }
-  .cell {
-    position: relative;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: clamp(1.6rem, 3vw, 2.6rem);
-    min-height: clamp(230px, 24vw, 300px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    isolation: isolate;
-    transition: background 0.6s var(--thunk), color 0.6s var(--thunk);
-  }
-  .cell::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: var(--ink);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.55s var(--weight);
-    z-index: -1;
-  }
-  .cell:hover { color: var(--concrete); }
-  .cell:hover::before { transform: scaleY(1); }
-  .cell:hover .cell__no { color: var(--rust); }
-  .cell:hover .cell__arrow { transform: translate(4px, -4px); color: var(--rust); }
-
-  .cell__top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .cell__no { color: var(--ink-soft); transition: color 0.5s var(--thunk); }
-  .cell__arrow {
-    font-size: 1.3rem;
-    line-height: 1;
-    transition: transform 0.5s var(--thunk), color 0.5s var(--thunk);
-  }
-  .cell h3 {
-    font-weight: 500;
-    font-size: clamp(1.7rem, 3vw, 2.3rem);
-    line-height: 1.05;
-    margin-bottom: 0.6rem;
-  }
-  .cell p {
-    color: inherit;
-    opacity: 0.78;
-    max-width: 32ch;
-    font-size: 1.04rem;
-  }
-  /* let the bottom row not double-border on the right edge */
-  .matrix .cell:nth-child(3n) { border-right: none; }
-
-  /* ---------- PROOF / editorial testimonials -------------------- */
-  .proof { padding-bottom: clamp(2rem, 5vw, 4rem); }
-  .quote-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 3vw, 2.5rem);
-    padding: clamp(1rem, 3vw, 2.5rem) var(--gutter) 0;
-  }
-  figure.quote { margin: 0; }
-  figure.quote blockquote {
-    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  .hero__statement {
+    font-family: "Syne", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2.4vw, 1.9rem);
     line-height: 1.22;
-    font-weight: 400;
-    letter-spacing: -0.005em;
+    letter-spacing: -0.01em;
+    max-width: 24ch;
   }
-  figure.quote blockquote::first-letter { color: var(--rust); }
-  figure.quote .big {
-    font-style: italic;
-    color: var(--rust);
-  }
-  figure.quote figcaption {
-    margin-top: 1.2rem;
-    display: flex;
-    gap: 0.8rem;
-    align-items: baseline;
-    color: var(--ink-soft);
-    border-top: 1px solid var(--line);
-    padding-top: 0.8rem;
-  }
+  .hero__meta { color: var(--ink-soft); line-height: 1.9; }
+  .hero__meta b { color: var(--ink); font-weight: 500; }
 
-  /* deliberate asymmetry across the 12-col field */
-  .q1 { grid-column: 1 / span 7; }
-  .q2 { grid-column: 9 / span 4; align-self: end; }
-  .q3 { grid-column: 2 / span 5; align-self: center; }
-  .q4 { grid-column: 8 / span 5; }
-
-  /* raw numbers band */
-  .figures {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--line);
-    margin-top: clamp(2.5rem, 6vw, 4.5rem);
-  }
-  .figures div {
-    padding: clamp(1.8rem, 3vw, 2.6rem) var(--gutter);
-    border-right: 1px solid var(--line);
-  }
-  .figures div:last-child { border-right: none; }
-  .figures .n {
-    display: block;
-    font-size: clamp(2.6rem, 5vw, 4.4rem);
-    line-height: 1;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-  }
-  .figures .n sup { font-size: 0.4em; color: var(--rust); vertical-align: super; }
-  .figures .k { display: block; margin-top: 0.9rem; color: var(--ink-soft); }
-
-  /* ---------- INDEX / process list ------------------------------ */
-  .ledger { border-top: 1px solid var(--line); }
-  .row {
-    display: grid;
-    grid-template-columns: 5rem minmax(0,1fr) minmax(0,1.3fr) 4rem;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: center;
-    padding: clamp(1.4rem, 2.6vw, 2rem) var(--gutter);
+  /* ---------- index / manifest marquee ------------------------- */
+  .strip {
     border-bottom: 1px solid var(--line);
-    transition: padding-left 0.6s var(--thunk), background 0.6s var(--thunk);
-  }
-  .row:last-child { border-bottom: none; }
-  .row:hover { padding-left: calc(var(--gutter) + 1.2rem); background: var(--concrete-2); }
-  .row:hover .row__t { color: var(--rust); }
-  .row .row__no { color: var(--ink-soft); }
-  .row__t { font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 500; }
-  .row__d { color: var(--ink-soft); max-width: 46ch; }
-  .row__tick { text-align: right; color: var(--ink-soft); transition: color 0.5s var(--thunk); }
-  .row:hover .row__tick { color: var(--rust); }
-
-  /* ---------- CONTACT / CTA ------------------------------------- */
-  .invite {
     background: var(--ink);
-    color: var(--concrete);
-  }
-  .invite .inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: end;
-    padding: clamp(3rem, 8vw, 6.5rem) var(--gutter) clamp(2.4rem, 5vw, 4rem);
-  }
-  .invite h2 {
-    font-weight: 500;
-    font-size: clamp(2.6rem, 8vw, 6.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.015em;
-  }
-  .invite h2 em { font-style: italic; color: var(--rust); }
-  .invite .meta { color: #b9b3a5; }
-  .invite .meta a { display: inline-block; }
-
-  .applink {
-    position: relative;
-    border: 1px solid #4a473f;
-    padding: 1.1rem 1.6rem;
-    display: inline-flex;
-    gap: 1.4rem;
-    align-items: center;
+    color: var(--cement);
     overflow: hidden;
-    isolation: isolate;
+  }
+  .strip__track {
+    display: flex; width: max-content;
     white-space: nowrap;
+    padding: 0.65rem 0;
+    animation: slide 40s linear infinite;
   }
-  .applink::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: var(--rust);
-    transform: translateY(101%);
-    transition: transform 0.55s var(--weight);
-    z-index: -1;
-  }
-  .applink:hover::before { transform: translateY(0); }
-  .applink:hover { border-color: var(--rust); color: var(--concrete); }
-  .applink .arrow { transition: transform 0.5s var(--thunk); }
-  .applink:hover .arrow { transform: translateX(6px); }
+  .strip__track span { display: inline-flex; gap: 2.6rem; padding: 0 1.3rem; }
+  .strip b { color: var(--accent); font-weight: 400; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .strip__track { animation: none; } }
 
-  /* ---------- footer -------------------------------------------- */
-  footer.foot {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    padding: clamp(2rem, 4vw, 3rem) var(--gutter);
-    color: var(--ink-soft);
-    align-items: start;
+  /* ---------- big section header ------------------------------- */
+  .head { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: clamp(1.8rem, 4vw, 3rem); flex-wrap: wrap; }
+  .head .no { color: var(--accent); }
+  .head h2 {
+    font-family: "Syne", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 3.6rem);
+    line-height: 0.98;
+    letter-spacing: -0.015em;
+    max-width: 20ch;
   }
-  footer.foot .col h4 { color: var(--ink); margin-bottom: 0.8rem; }
-  footer.foot ul { list-style: none; }
-  footer.foot li { margin-bottom: 0.4rem; }
-  footer.foot a:hover { color: var(--rust); }
-  footer.foot .colophon { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 1.4rem; margin-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+  /* ---------- CAPABILITIES grid -------------------------------- */
+  .caps { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+  .cap {
+    position: relative;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: clamp(1.5rem, 3vw, 2.6rem);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    isolation: isolate;
+    transition: var(--t);
+  }
+  .cap::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--ink); z-index: -1;
+    transform: scaleX(0); transform-origin: left;
+    transition: var(--t);
+  }
+  .cap:hover { color: var(--cement); }
+  .cap:hover::before { transform: scaleX(1); }
+  .cap:nth-child(2n) { border-right: none; }
+  .cap .num { color: var(--accent); padding-top: 0.25rem; }
+  .cap h3 { font-family: "Syne", sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.4vw, 1.8rem); line-height: 1.05; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+  .cap p { color: inherit; opacity: 0.82; max-width: 38ch; font-size: 0.92rem; line-height: 1.55; }
+  .cap:hover .num { color: var(--accent); }
+
+  /* ---------- OBJECTION & PROOF MATRIX ------------------------- */
+  .matrix { border-top: 1px solid var(--line); }
+  .mrow {
+    display: grid;
+    grid-template-columns: 4rem 1.2fr 1fr;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2.4rem);
+    padding: clamp(1.5rem, 3vw, 2.4rem) var(--pad);
+    border-bottom: 1px solid var(--line);
+    transition: var(--t);
+  }
+  .mrow:last-child { border-bottom: none; }
+  .mrow:hover { background: var(--cement-2); padding-left: calc(var(--pad) + 0.9rem); }
+  .mrow .mno { color: var(--ink-soft); }
+  .mrow:hover .mno { color: var(--accent); }
+  .objection { color: var(--ink-soft); font-size: 0.96rem; line-height: 1.45; }
+  .objection s { text-decoration-color: var(--accent); text-decoration-thickness: 1px; }
+  .proof { text-align: right; }
+  .proof .fig {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5.2vw, 3.8rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    display: block;
+  }
+  .proof .fig sup { font-size: 0.36em; color: var(--accent); vertical-align: super; }
+  .proof .label { color: var(--ink-soft); margin-top: 0.5rem; }
+
+  /* ---------- WORK ledger -------------------------------------- */
+  .ledger { border-top: 1px solid var(--line); }
+  .lrow {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1.1fr) minmax(0, 1.5fr) auto;
+    gap: clamp(1rem, 3vw, 2.4rem);
+    align-items: baseline;
+    padding: clamp(1.3rem, 2.6vw, 2rem) var(--pad);
+    border-bottom: 1px solid var(--line);
+    transition: var(--t);
+  }
+  .lrow:last-child { border-bottom: none; }
+  .lrow:hover { background: var(--cement-2); padding-left: calc(var(--pad) + 0.9rem); }
+  .lrow .lno { color: var(--ink-soft); }
+  .lrow:hover .lno { color: var(--accent); }
+  .lrow h3 { font-family: "Syne", sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.5vw, 2rem); letter-spacing: -0.01em; }
+  .lrow .ld { color: var(--ink-soft); max-width: 48ch; font-size: 0.92rem; line-height: 1.5; }
+  .lrow .ly { color: var(--ink-soft); white-space: nowrap; }
+  .lrow:hover h3 { color: var(--accent); }
+
+  /* ---------- CONTACT ------------------------------------------ */
+  .contact { background: var(--ink); color: var(--cement); }
+  .contact .body { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(2.6rem, 6vw, 4.5rem); }
+  .contact .aside { border-right-color: var(--line-ink); color: #9c968a; }
+  .contact .aside .tag { color: var(--accent); }
+  .contact h2 {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 9vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(1.8rem, 4vw, 3rem);
+  }
+  .contact h2 .accent { color: var(--accent); }
+  .contact__row { display: flex; flex-wrap: wrap; gap: 1.4rem 2.5rem; align-items: center; justify-content: space-between; }
+  .contact__row p { color: #9c968a; max-width: 40ch; }
+
+  .cta {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 1.4rem;
+    border: 1px solid #46443c;
+    padding: 1.05rem 1.6rem;
+    overflow: hidden; isolation: isolate;
+    font-size: 0.7rem;
+    transition: var(--t);
+  }
+  .cta::before {
+    content: ""; position: absolute; inset: 0; background: var(--accent); z-index: -1;
+    transform: translateY(101%); transition: var(--t);
+  }
+  .cta:hover { border-color: var(--accent); color: var(--ink); }
+  .cta:hover::before { transform: translateY(0); }
+  .cta .arr { transition: var(--t); }
+  .cta:hover .arr { transform: translateX(6px); }
+
+  /* ---------- footer ------------------------------------------- */
+  .foot { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; padding: clamp(1.8rem, 4vw, 3rem) var(--pad); color: var(--ink-soft); }
+  .foot h4 { color: var(--ink); margin-bottom: 0.8rem; }
+  .foot ul { list-style: none; }
+  .foot li { margin-bottom: 0.35rem; }
+  .foot a { transition: var(--t); }
+  .foot a:hover { color: var(--accent); }
+  .foot .colophon { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 1.3rem; margin-top: 0.8rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
   /* ============================================================
-     RESPONSIVE — stack with intent, keep text left-aligned
+     RESPONSIVE — collapse to a single, left-aligned column
      ============================================================ */
-  @media (max-width: 1080px) {
-    .matrix { grid-template-columns: repeat(2, 1fr); }
-    .matrix .cell:nth-child(3n) { border-right: 1px solid var(--line); }
-    .matrix .cell:nth-child(2n) { border-right: none; }
+  @media (max-width: 1024px) {
+    .hero__lead { grid-template-columns: 1fr; }
+    figure.showcase { max-width: 420px; }
+    figure.showcase .frameimg { aspect-ratio: 16 / 10; }
   }
 
-  @media (max-width: 860px) {
-    body { font-size: 17px; }
+  @media (max-width: 820px) {
+    body { font-size: 15px; }
 
-    nav.primary { display: none; }
-    nav.primary.open {
+    /* drop the decorative left rail entirely on mobile */
+    .shell { grid-template-columns: 1fr; }
+    .rail { display: none; }
+
+    /* every section block stacks: notes above content */
+    .block__grid { grid-template-columns: 1fr; }
+    .aside { border-right: none; border-bottom: 1px solid var(--line); padding: 1.2rem var(--pad); }
+
+    /* nav collapses to a minimal menu */
+    nav.nav { display: none; }
+    nav.nav.open {
       display: block;
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      background: var(--concrete);
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--cement);
       border-bottom: 1px solid var(--line);
     }
-    nav.primary.open ul {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0;
-    }
-    nav.primary.open li { width: 100%; border-top: 1px solid var(--line); }
-    nav.primary.open a { display: block; padding: 1.1rem var(--gutter); width: 100%; }
-    .menu-toggle { display: inline-block; }
-    header.bar { position: relative; }
+    nav.nav.open ul { flex-direction: column; align-items: stretch; gap: 0; }
+    nav.nav.open li { border-top: 1px solid var(--line); }
+    nav.nav.open a { display: block; padding: 1.05rem var(--pad); }
+    .burger { display: inline-block; }
+    .util { position: relative; }
 
-    .hero { grid-template-columns: 1fr; }
-    .hero__type { border-right: none; border-bottom: 1px solid var(--line); }
-    .hero h1 .indent { padding-left: 0; }
     .hero__foot { grid-template-columns: 1fr; }
-    .hero__media { grid-template-columns: auto 1fr; min-height: 60vw; }
+    .hero h1 .shift { transform: none; }
 
-    .sec-head { grid-template-columns: 1fr; }
+    .caps { grid-template-columns: 1fr; }
+    .cap, .cap:nth-child(2n) { border-right: none; }
 
-    /* quotes: linear, fully readable, left aligned */
-    .quote-grid { grid-template-columns: 1fr; }
-    .q1, .q2, .q3, .q4 { grid-column: 1 / -1; align-self: auto; }
-    figure.quote { padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
-    figure.quote:last-child { border-bottom: none; }
-
-    .figures { grid-template-columns: repeat(2, 1fr); }
-    .figures div:nth-child(2) { border-right: none; }
-    .figures div:nth-child(1), .figures div:nth-child(2) { border-bottom: 1px solid var(--line); }
-
-    .row {
+    /* matrix: stack objection over proof, all left-aligned */
+    .mrow {
       grid-template-columns: 3rem 1fr;
-      grid-template-areas: "no title" ". desc";
+      grid-template-areas: "no obj" ". proof";
+      row-gap: 0.8rem;
+    }
+    .mrow .mno { grid-area: no; }
+    .objection { grid-area: obj; }
+    .proof { grid-area: proof; text-align: left; }
+    .proof .label { text-align: left; }
+    .mrow:hover { padding-left: var(--pad); }
+
+    .lrow {
+      grid-template-columns: 3rem 1fr;
+      grid-template-areas: "no title" ". desc" ". year";
       row-gap: 0.5rem;
     }
-    .row__no { grid-area: no; }
-    .row__t  { grid-area: title; }
-    .row__d  { grid-area: desc; }
-    .row__tick { display: none; }
-    .row:hover { padding-left: var(--gutter); } /* no shift jank on touch */
+    .lrow .lno { grid-area: no; }
+    .lrow h3 { grid-area: title; }
+    .lrow .ld { grid-area: desc; }
+    .lrow .ly { grid-area: year; }
+    .lrow:hover { padding-left: var(--pad); }
 
-    .invite .inner { grid-template-columns: 1fr; align-items: start; }
-    .applink { width: 100%; justify-content: space-between; }
-
-    footer.foot { grid-template-columns: repeat(2, 1fr); }
+    .foot { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 460px) {
-    .matrix { grid-template-columns: 1fr; }
-    .matrix .cell, .matrix .cell:nth-child(3n) { border-right: none; }
-    .figures { grid-template-columns: 1fr; }
-    .figures div { border-right: none; border-bottom: 1px solid var(--line); }
-    .figures div:last-child { border-bottom: none; }
-    footer.foot { grid-template-columns: 1fr; }
+    .foot { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 
-<body>
-<div class="frame">
+<body id="top">
 
-  <!-- ============== TOP BAR ============== -->
-  <header class="bar">
-    <a class="wordmark" href="#top" aria-label="TMHS Digital, home">
-      TMHS<span class="dot">●</span>DIGITAL
+  <!-- ===== UTILITY BAR ===== -->
+  <header class="util">
+    <a class="brand" href="#top" aria-label="TMHS Digital, home">
+      <span class="mark" aria-hidden="true"></span> TMHS&nbsp;DIGITAL
     </a>
-    <nav class="primary mono" id="nav" aria-label="Primary">
+    <nav class="nav mono" id="nav" aria-label="Primary">
       <ul>
-        <li><a href="#work">Practice</a></li>
-        <li><a href="#proof">Proof</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#contact">Enquire</a></li>
+        <li><a href="#capabilities"><span class="idx">01</span>Capabilities</a></li>
+        <li><a href="#proof"><span class="idx">02</span>Proof</a></li>
+        <li><a href="#work"><span class="idx">03</span>Work</a></li>
+        <li><a href="#contact"><span class="idx">04</span>Contact</a></li>
       </ul>
     </nav>
-    <button class="menu-toggle mono" id="toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Index</button>
   </header>
 
-  <!-- ============== HERO ============== -->
-  <section class="hero" id="top" aria-label="Introduction">
-    <div class="hero__type">
-      <div>
-        <div class="eyebrow mono">
-          <span>Boutique Design &amp; Development</span>
-          <span>Est. MMXIV — Worldwide</span>
+  <div class="shell">
+
+    <!-- ===== STRUCTURAL RAIL ===== -->
+    <aside class="rail" aria-hidden="true">
+      <div class="rail__sticky">
+        <span class="mono rail__v">TMHS — Creative Engineering</span>
+        <span class="mono rail__co">51.5°N<br />0.12°W</span>
+        <span class="mono rail__v">Index / MMXXVI</span>
+      </div>
+    </aside>
+
+    <main class="canvas">
+
+      <!-- ===== HERO ===== -->
+      <section class="block hero" aria-label="Introduction">
+        <div class="block__grid">
+          <div class="aside mono">
+            <span class="tag">[ Studio — 01 ]</span>
+            <p>Creative engineering &amp;<br />strategic projects.</p>
+            <p>Three principals.<br />Two engagements / quarter.<br />Zero templates.</p>
+            <p>London — Worldwide<br />Est. MMXIV</p>
+          </div>
+
+          <div class="body">
+            <div class="hero__top mono">
+              <span>Creative Engineering / Strategy</span>
+              <span>Available — Q4 MMXXVI</span>
+            </div>
+
+            <div class="hero__lead">
+              <h1 class="display">
+                <span class="row">Build</span>
+                <span class="row thin">with</span>
+                <span class="row shift accent">intent.</span>
+              </h1>
+
+              <figure class="showcase">
+                <div class="frameimg">
+                  <img src="image_5bce99.png" alt="Structural Showcase" />
+                </div>
+                <figcaption class="mono"><b>№ 001</b><span>Structural / Field</span></figcaption>
+              </figure>
+            </div>
+
+            <div class="hero__foot">
+              <p class="hero__statement">
+                A creative engineering practice for brands that would rather be
+                remembered than recognised.
+              </p>
+              <div class="hero__meta mono">
+                <p>(01) — Brand &amp; product systems<br />
+                   (02) — Editorial &amp; commerce builds<br />
+                   (03) — Strategy, held end to end</p>
+                <p style="margin-top:1rem;"><b>Scroll</b> to read the record ↓</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <h1>
-          Build the<br />
-          <span class="indent"><em>unrepeat&shy;able.</em></span>
-        </h1>
+      </section>
+
+      <!-- ===== MANIFEST STRIP ===== -->
+      <div class="strip mono" aria-hidden="true">
+        <div class="strip__track">
+          <span>Brand Systems <b>/</b> Editorial Web <b>/</b> Commerce <b>/</b> Product <b>/</b> Strategy <b>/</b> Motion <b>/</b> Brand Systems <b>/</b> Editorial Web <b>/</b> Commerce <b>/</b> Product <b>/</b> Strategy <b>/</b> Motion <b>/</b></span>
+          <span>Brand Systems <b>/</b> Editorial Web <b>/</b> Commerce <b>/</b> Product <b>/</b> Strategy <b>/</b> Motion <b>/</b> Brand Systems <b>/</b> Editorial Web <b>/</b> Commerce <b>/</b> Product <b>/</b> Strategy <b>/</b> Motion <b>/</b></span>
+        </div>
       </div>
 
-      <div class="hero__foot">
-        <p class="mono" style="text-transform:none; letter-spacing:0; line-height:1.7;">
-          (01) — A studio of three.<br />
-          (02) — Two projects a season.<br />
-          (03) — Zero templates.
-        </p>
-        <p>
-          We are a boutique design and development practice for brands that
-          would rather be remembered than recognised. Considered objects,
-          built to outlast the trend cycle.
-        </p>
-      </div>
-    </div>
+      <!-- ===== CAPABILITIES ===== -->
+      <section class="block" id="capabilities" aria-labelledby="cap-h">
+        <div class="block__grid">
+          <div class="aside mono">
+            <span class="tag">[ Capabilities — 02 ]</span>
+            <p>A narrow set of disciplines, pursued without compromise.</p>
+            <p>Each engagement is led by a principal — no handoffs to a junior bench.</p>
+          </div>
+          <div class="body">
+            <div class="head">
+              <span class="no mono">02 / 06</span>
+              <h2 id="cap-h">What the studio builds.</h2>
+            </div>
+            <div class="caps">
+              <article class="cap">
+                <span class="num mono">01</span>
+                <div><h3>Brand Systems</h3><p>Identity, voice, and the rules that hold them — from monogram to motion grammar.</p></div>
+              </article>
+              <article class="cap">
+                <span class="num mono">02</span>
+                <div><h3>Editorial Web</h3><p>Magazine-grade front-ends. Typographic systems engineered to be read, not skimmed.</p></div>
+              </article>
+              <article class="cap">
+                <span class="num mono">03</span>
+                <div><h3>Commerce</h3><p>Considered storefronts where the checkout feels as deliberate as the product.</p></div>
+              </article>
+              <article class="cap">
+                <span class="num mono">04</span>
+                <div><h3>Product &amp; Platform</h3><p>Hand-built, dependency-light interfaces. Fast, durable, a pleasure to inherit.</p></div>
+              </article>
+              <article class="cap">
+                <span class="num mono">05</span>
+                <div><h3>Strategy</h3><p>Positioning and narrative held end to end — the argument before the artefact.</p></div>
+              </article>
+              <article class="cap">
+                <span class="num mono">06</span>
+                <div><h3>Type &amp; Motion</h3><p>Custom lettering and the small mechanical movements that signal real craft.</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="hero__media" aria-hidden="false">
-      <div class="vrail mono"><span>TMHS — Selected Field Work / 2026</span></div>
-      <div class="hero__figure">
-        <figure>
-          <div class="ph mono">image_5bce99.png</div>
-          <img src="image_5bce99.png" alt="Selected studio field work — architectural digital composition by TMHS Digital." loading="eager" />
-          <figcaption class="mono"><span class="num">№ 001</span><span>Atelier / Composition</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+      <!-- ===== OBJECTION & PROOF MATRIX ===== -->
+      <section class="block" id="proof" aria-labelledby="proof-h">
+        <div class="block__grid">
+          <div class="aside mono">
+            <span class="tag">[ Proof — 03 ]</span>
+            <p>The objection, then the number. No stars, no logos — just the record.</p>
+            <p>Figures drawn from engagements, MMXIV–MMXXVI.</p>
+          </div>
+          <div class="body" style="padding-left:0; padding-right:0; padding-bottom:0;">
+            <div class="head" style="padding:0 var(--pad);">
+              <span class="no mono">03 / 06</span>
+              <h2 id="proof-h">Objection &amp; proof matrix.</h2>
+            </div>
+            <div class="matrix">
+              <div class="mrow">
+                <span class="mno mono">A1</span>
+                <p class="objection">“<s>Agencies overpromise, then disappear after launch.</s>”</p>
+                <div class="proof"><span class="fig">100<sup>%</sup></span><span class="label mono">Clients retained, year on year</span></div>
+              </div>
+              <div class="mrow">
+                <span class="mno mono">A2</span>
+                <p class="objection">“<s>A rebrand and rebuild takes half a year, minimum.</s>”</p>
+                <div class="proof"><span class="fig">31<sup>d</sup></span><span class="label mono">Median concept → production</span></div>
+              </div>
+              <div class="mrow">
+                <span class="mno mono">A3</span>
+                <p class="objection">“<s>Engineering quality always slips under a deadline.</s>”</p>
+                <div class="proof"><span class="fig">0</span><span class="label mono">Critical defects shipped, 24 mo</span></div>
+              </div>
+              <div class="mrow">
+                <span class="mno mono">A4</span>
+                <p class="objection">“<s>Performance is an afterthought for design studios.</s>”</p>
+                <div class="proof"><span class="fig">0.8<sup>s</sup></span><span class="label mono">Median load · 98 Lighthouse</span></div>
+              </div>
+              <div class="mrow">
+                <span class="mno mono">A5</span>
+                <p class="objection">“<s>Boutiques can’t move real commercial numbers.</s>”</p>
+                <div class="proof"><span class="fig">+38<sup>%</sup></span><span class="label mono">Median lift in qualified conversion</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- ============== RIBBON ============== -->
-  <div class="ribbon mono" aria-hidden="true">
-    <div class="ribbon__track">
-      <span>Brand Systems&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Editorial Web&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Commerce&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Type &amp; Motion&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Brand Systems&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Editorial Web&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Commerce&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Type &amp; Motion&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span>
-      <span>Brand Systems&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Editorial Web&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Commerce&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Type &amp; Motion&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Brand Systems&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Editorial Web&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Commerce&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;Type &amp; Motion&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span>
-    </div>
+      <!-- ===== WORK ===== -->
+      <section class="block" id="work" aria-labelledby="work-h">
+        <div class="block__grid">
+          <div class="aside mono">
+            <span class="tag">[ Work — 04 ]</span>
+            <p>Selected engagements. Names abbreviated; outcomes are not.</p>
+          </div>
+          <div class="body" style="padding-left:0; padding-right:0; padding-bottom:0;">
+            <div class="head" style="padding:0 var(--pad);">
+              <span class="no mono">04 / 06</span>
+              <h2 id="work-h">Selected field work.</h2>
+            </div>
+            <div class="ledger">
+              <div class="lrow">
+                <span class="lno mono">01</span>
+                <h3>MARROW</h3>
+                <p class="ld">Identity and editorial platform for a furniture atelier — a system, not a website.</p>
+                <span class="ly mono">Brand · Web — ’25</span>
+              </div>
+              <div class="lrow">
+                <span class="lno mono">02</span>
+                <h3>Halden &amp; Co.</h3>
+                <p class="ld">Commerce rebuild and narrative reset; checkout reworked to match the product.</p>
+                <span class="ly mono">Commerce — ’25</span>
+              </div>
+              <div class="lrow">
+                <span class="lno mono">03</span>
+                <h3>Ostro Goods</h3>
+                <p class="ld">From a website to a language — naming, voice, and a kinetic type system.</p>
+                <span class="ly mono">Strategy · Motion — ’24</span>
+              </div>
+              <div class="lrow">
+                <span class="lno mono">04</span>
+                <h3>Form Atelier</h3>
+                <p class="ld">A dependency-light product surface that still loads instantly two years on.</p>
+                <span class="ly mono">Product — ’24</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section class="block contact" id="contact" aria-labelledby="cta-h">
+        <div class="block__grid">
+          <div class="aside mono">
+            <span class="tag">[ Contact — 05 ]</span>
+            <p>Booking two engagements for the next quarter.</p>
+            <p>By appointment only.</p>
+          </div>
+          <div class="body">
+            <h2 id="cta-h" class="display">Make<br /><span class="accent">one good thing.</span></h2>
+            <div class="contact__row">
+              <p class="mono" style="text-transform:none; letter-spacing:0;">Tell us what you are building. A short note is enough to start.</p>
+              <a class="cta mono" href="mailto:studio@tmhs.digital?subject=Project%20Enquiry">
+                <span>studio@tmhs.digital</span><span class="arr">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="foot mono">
+        <div>
+          <h4>TMHS Digital</h4>
+          <p style="text-transform:none; letter-spacing:0;">Creative engineering &amp; strategic projects. Working worldwide, on local time.</p>
+        </div>
+        <div>
+          <h4>Index</h4>
+          <ul>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#proof">Proof</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Channels</h4>
+          <ul>
+            <li><a href="mailto:studio@tmhs.digital">Email</a></li>
+            <li><a href="#top">Instagram</a></li>
+            <li><a href="#top">Are.na</a></li>
+            <li><a href="#top">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <p style="text-transform:none; letter-spacing:0;">51.5072° N, 0.1276° W<br />London — Worldwide</p>
+        </div>
+        <div class="colophon">
+          <span>© MMXXVI TMHS Digital — All rights reserved.</span>
+          <span>Set in Syne &amp; JetBrains Mono.</span>
+        </div>
+      </footer>
+
+    </main>
   </div>
 
-  <!-- ============== SERVICE MATRIX ============== -->
-  <section id="work" aria-labelledby="work-h">
-    <div class="sec-head">
-      <p class="mono idx">[ 01 — Practice ]</p>
-      <h2 id="work-h">A narrow set of <em>disciplines,</em> pursued without compromise.</h2>
-    </div>
-    <div class="matrix">
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">01 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Brand&nbsp;Systems</h3><p>Identity, voice and the rules that hold them — from monogram to motion grammar.</p></div>
-      </article>
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">02 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Editorial&nbsp;Web</h3><p>Magazine-grade front-ends. Typographic systems engineered to be read, not skimmed.</p></div>
-      </article>
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">03 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Commerce</h3><p>Considered storefronts where the checkout feels as deliberate as the product.</p></div>
-      </article>
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">04 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Type &amp; Motion</h3><p>Custom lettering, kinetic detail and the small movements that signal craft.</p></div>
-      </article>
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">05 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Art&nbsp;Direction</h3><p>The eye on the whole. We hold the line between every pixel and the idea.</p></div>
-      </article>
-      <article class="cell">
-        <div class="cell__top"><span class="cell__no mono">06 / 06</span><span class="cell__arrow">↗</span></div>
-        <div><h3>Engineering</h3><p>Hand-built, dependency-light code. Fast, durable, and a pleasure to inherit.</p></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ============== PROOF ============== -->
-  <section id="proof" class="proof" aria-labelledby="proof-h">
-    <div class="sec-head">
-      <p class="mono idx">[ 02 — Proof ]</p>
-      <h2 id="proof-h">The record, in <em>their words</em> and a few stubborn numbers.</h2>
-    </div>
-
-    <div class="quote-grid">
-      <figure class="quote q1">
-        <blockquote>They treated our launch like a <span class="big">building</span> — every joint considered, nothing decorative left unearned.</blockquote>
-        <figcaption class="mono"><span>—— Lena Okafor</span><span>Founder, MARROW Studio</span></figcaption>
-      </figure>
-
-      <figure class="quote q2">
-        <blockquote>Three people did what an agency of thirty couldn't: make us feel <span class="big">singular.</span></blockquote>
-        <figcaption class="mono"><span>—— D. Reyes</span><span>CMO, Halden &amp; Co.</span></figcaption>
-      </figure>
-
-      <figure class="quote q3">
-        <blockquote>It still loads instantly two years on. That is the whole review.</blockquote>
-        <figcaption class="mono"><span>—— P. Vainio</span><span>Director, Form Atelier</span></figcaption>
-      </figure>
-
-      <figure class="quote q4">
-        <blockquote>We came for a website and left with a <span class="big">language</span> for the company.</blockquote>
-        <figcaption class="mono"><span>—— S. Marchetti</span><span>CEO, Ostro Goods</span></figcaption>
-      </figure>
-    </div>
-
-    <div class="figures">
-      <div><span class="n">14<sup>yrs</sup></span><span class="k mono">In continuous practice</span></div>
-      <div><span class="n">02</span><span class="k mono">Engagements per season</span></div>
-      <div><span class="n">100<sup>%</sup></span><span class="k mono">Hand-built, no templates</span></div>
-      <div><span class="n">41</span><span class="k mono">Partners, since two-thousand-fourteen</span></div>
-    </div>
-  </section>
-
-  <!-- ============== PROCESS LEDGER ============== -->
-  <section id="process" aria-labelledby="proc-h">
-    <div class="sec-head">
-      <p class="mono idx">[ 03 — Process ]</p>
-      <h2 id="proc-h">Four movements, <em>slowly.</em></h2>
-    </div>
-    <div class="ledger">
-      <div class="row">
-        <span class="row__no mono">01</span>
-        <span class="row__t">Listen</span>
-        <span class="row__d">A long first read of your business, your archive and the room you operate in.</span>
-        <span class="row__tick mono">wk 1–2</span>
-      </div>
-      <div class="row">
-        <span class="row__no mono">02</span>
-        <span class="row__t">Draw</span>
-        <span class="row__d">Direction on paper before pixels — type, grid and tone argued out in full.</span>
-        <span class="row__tick mono">wk 3–5</span>
-      </div>
-      <div class="row">
-        <span class="row__no mono">03</span>
-        <span class="row__t">Build</span>
-        <span class="row__d">Hand-coded, reviewed line by line. No frameworks you'll resent inheriting.</span>
-        <span class="row__tick mono">wk 6–9</span>
-      </div>
-      <div class="row">
-        <span class="row__no mono">04</span>
-        <span class="row__t">Hand&nbsp;Over</span>
-        <span class="row__d">Documentation, training and a system your team can carry on alone.</span>
-        <span class="row__tick mono">wk 10</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============== CONTACT ============== -->
-  <section id="contact" class="invite" aria-labelledby="cta-h">
-    <div class="inner">
-      <div>
-        <p class="mono idx" style="color:var(--rust); margin-bottom:1.6rem;">[ 04 — Enquire ]</p>
-        <h2 id="cta-h">Let's make<br /><em>one good thing.</em></h2>
-        <p class="meta mono" style="margin-top:2rem; text-transform:none; letter-spacing:0;">
-          Booking two engagements for the Autumn season. Tell us what you are building.
-        </p>
-      </div>
-      <a class="applink mono" href="mailto:studio@tmhs.digital?subject=Project%20Enquiry">
-        <span>studio@tmhs.digital</span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- ============== FOOTER ============== -->
-  <footer class="foot mono">
-    <div class="col">
-      <h4>TMHS Digital</h4>
-      <p style="text-transform:none; letter-spacing:0;">A boutique studio of three. Working worldwide, on local time.</p>
-    </div>
-    <div class="col">
-      <h4>Index</h4>
-      <ul>
-        <li><a href="#work">Practice</a></li>
-        <li><a href="#proof">Proof</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#contact">Enquire</a></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h4>Channels</h4>
-      <ul>
-        <li><a href="mailto:studio@tmhs.digital">Email</a></li>
-        <li><a href="#top">Instagram</a></li>
-        <li><a href="#top">Are.na</a></li>
-        <li><a href="#top">LinkedIn</a></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h4>Studio</h4>
-      <p style="text-transform:none; letter-spacing:0;">51.5072° N, 0.1276° W<br />By appointment only.</p>
-    </div>
-    <div class="colophon">
-      <span>© MMXXVI TMHS Digital — All rights reserved.</span>
-      <span>Set in Cormorant Garamond &amp; JetBrains Mono.</span>
-    </div>
-  </footer>
-
-</div>
-
 <script>
-  // minimal: collapse-nav toggle for mobile
+  // minimal menu toggle for mobile — the only JS on the page
   (function () {
-    var t = document.getElementById('toggle');
+    var b = document.getElementById('burger');
     var n = document.getElementById('nav');
-    if (!t || !n) return;
-    t.addEventListener('click', function () {
+    if (!b || !n) return;
+    b.addEventListener('click', function () {
       var open = n.classList.toggle('open');
-      t.setAttribute('aria-expanded', open ? 'true' : 'false');
-      t.textContent = open ? 'Close' : 'Menu';
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      b.textContent = open ? 'Close' : 'Index';
     });
     n.addEventListener('click', function (e) {
-      if (e.target.tagName === 'A') {
+      if (e.target.closest('a')) {
         n.classList.remove('open');
-        t.setAttribute('aria-expanded', 'false');
-        t.textContent = 'Menu';
+        b.setAttribute('aria-expanded', 'false');
+        b.textContent = 'Index';
       }
     });
   })();
